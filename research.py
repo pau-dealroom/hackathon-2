@@ -100,9 +100,15 @@ def _get_portfolio(investor_id: int):
     )
     total_txns = len(txns) or 1
     focus_countries = []
-    for country, cnt in country_counts.most_common(2):
-        if country and (cnt / total_txns >= 0.12 or len(focus_countries) == 0):
+    # Include every country with ≥12% portfolio share, no cap on count.
+    # Always include the top country, even if below threshold (small portfolios).
+    for country, cnt in country_counts.most_common():
+        if not country:
+            continue
+        if cnt / total_txns >= 0.12 or len(focus_countries) == 0:
             focus_countries.append(country)
+        else:
+            break
 
     return portfolio_ids, portfolio_sample, preferred_round, (fmin, fmax), focus_countries
 

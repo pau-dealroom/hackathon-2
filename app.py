@@ -101,15 +101,7 @@ def run_lp_pipeline(job_id: str, vc_name: str):
 
 @app.route("/")
 def index():
-    # Collect any already-generated pages for the gallery
-    pages = sorted(OUTPUT.glob("*.html"), key=lambda p: p.stat().st_mtime, reverse=True)[:6]
-    cards = "".join(_gallery_card(p) for p in pages)
-    gallery_section = f"""
-      <div class="gallery-title">Recently generated</div>
-      <div class="gallery">{cards}</div>
-    """ if cards else ""
-
-    return LANDING_HTML.replace("{{GALLERY}}", gallery_section)
+    return LANDING_HTML.replace("{{GALLERY}}", "")
 
 
 @app.route("/generate", methods=["POST"])
@@ -165,13 +157,7 @@ def view(slug):
 
 @app.route("/lp")
 def lp_index():
-    pages = sorted(OUTPUT.glob("lp_*.html"), key=lambda p: p.stat().st_mtime, reverse=True)[:6]
-    cards = "".join(_gallery_card(p) for p in pages)
-    gallery_section = f"""
-      <div class="gallery-title">Recently generated</div>
-      <div class="gallery">{cards}</div>
-    """ if cards else ""
-    return LP_LANDING_HTML.replace("{{GALLERY}}", gallery_section)
+    return LP_LANDING_HTML.replace("{{GALLERY}}", "")
 
 
 @app.route("/lp/generate", methods=["POST"])
@@ -331,8 +317,6 @@ LANDING_HTML = """<!DOCTYPE html>
 </nav>
 
 <main>
-  <p class="sub">Recommend companies to a VC based on their thesis, or find the right Limited Partners for a fund.</p>
-
   <div class="mode-tabs">
     <button class="tab active" id="tab-co" onclick="switchTab('co')">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>

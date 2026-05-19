@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Custom page for VCs · Hackathon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f6fa; --white: #fff; --border: #e5e7eb;
+      --text: #0f1a2e; --muted: #6b7280; --muted2: #9ca3af;
+      --accent: #3662e3; --accent-light: #eef2ff; --accent-border: #c7d2fe;
+      --green: #16a34a; --green-light: #f0fdf4;
+    }
+    html, body { background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: var(--text); }
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px; }
+
+    .slide {
+      width: 100%; max-width: 1100px; background: var(--white);
+      border: 1px solid var(--border); border-radius: 20px;
+      box-shadow: 0 4px 32px rgba(0,0,0,.08);
+      padding: 48px 56px; position: relative; overflow: hidden;
+    }
+
+    /* Top bar */
+    .top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 28px; margin-bottom: 32px; border-bottom: 1px solid var(--border);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-mark {
+      width: 36px; height: 36px; background: var(--text); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .brand-mark svg { width: 22px; height: 22px; }
+    .brand-name { font-size: 16px; font-weight: 700; color: var(--text); }
+    .badge {
+      background: var(--accent-light); border: 1px solid var(--accent-border);
+      color: var(--accent); font-size: 11px; font-weight: 600;
+      padding: 5px 14px; border-radius: 20px; letter-spacing: .3px;
+    }
+
+    /* Title block */
+    .title-block { margin-bottom: 32px; }
+    .eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase;
+               letter-spacing: 1.5px; color: var(--accent); margin-bottom: 12px; }
+    .title { font-size: 38px; font-weight: 800; line-height: 1.15; letter-spacing: -.5px;
+             margin-bottom: 14px; }
+    .goal { font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 760px; }
+    .goal strong { color: var(--text); font-weight: 600; }
+
+    /* Criteria grid */
+    .criteria-label {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--muted2); margin-bottom: 14px;
+    }
+    .grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .card {
+      background: var(--white); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); border-radius: 12px;
+      padding: 20px 22px;
+    }
+    .card-head {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .card-title { font-size: 13px; font-weight: 700; color: var(--text); }
+    .pill {
+      background: var(--green-light); color: var(--green);
+      font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 10px;
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+    .card-body { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+    /* Bottom bar */
+    .footer {
+      margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: var(--muted2);
+    }
+    .footer-tags { display: flex; gap: 8px; }
+    .tag {
+      background: #f3f4f6; border: 1px solid var(--border); color: var(--muted);
+      font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 6px;
+    }
+
+    @media print {
+      body { padding: 0; background: white; }
+      .slide { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="slide">
+
+  <!-- Top bar -->
+  <div class="top">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect x="6" y="20" width="4" height="6" rx="1" fill="white"/>
+          <rect x="13" y="13" width="4" height="13" rx="1" fill="white"/>
+          <rect x="20" y="8" width="4" height="18" rx="1" fill="white"/>
+        </svg>
+      </div>
+      <div class="brand-name">dealroom.co</div>
+    </div>
+    <div class="badge">Hackathon · 2026</div>
+  </div>
+
+  <!-- Title + goal -->
+  <div class="title-block">
+    <div class="eyebrow">Project · One-pager</div>
+    <h1 class="title">Custom page for VCs</h1>
+    <p class="goal">
+      <strong>Goal:</strong> spark curiosity through personalized content with the goal
+      of wanting to see more — only sending companies not already in their portfolio.
+    </p>
+  </div>
+
+  <!-- Criteria -->
+  <div class="criteria-label">Evaluation criteria</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Usefulness</div>
+        <span class="pill">✓ Yes</span>
+      </div>
+      <div class="card-body">
+        Saves the sales team manual research time and sparks curiosity in
+        the VC prospect — every page is a unique conversation starter.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Working demo</div>
+        <span class="pill">✓ Yes</span>
+      </div>
+      <div class="card-body">
+        Live Flask app generating bespoke Company &amp; LP recommendation
+        pages end-to-end from a single VC name or URL input.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Learning leap</div>
+        <span class="pill">✓ Loads</span>
+      </div>
+      <div class="card-body">
+        Learned a lot — working with API connectors, fixing bugs across
+        the stack, prompt design for GPT-driven thesis extraction, and
+        navigating the next-gen Dealroom API.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-tags">
+      <span class="tag">Dealroom API</span>
+      <span class="tag">Flask</span>
+      <span class="tag">GPT-4o</span>
+      <span class="tag">Python</span>
+    </div>
+    <div>github.com/pau-dealroom/hackathon-2</div>
+  </div>
+
+</div>
+
+</body>
+</html>

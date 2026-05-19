@@ -151,12 +151,12 @@ def build_lp_page(profile: dict, out_path: str, meeting_url: str = "") -> None:
     .hero {{ background: var(--white); border: 1px solid var(--border); border-radius: 16px;
              padding: 48px 32px 32px; text-align: center; margin-bottom: 24px;
              box-shadow: 0 1px 6px rgba(0,0,0,.05); }}
-    .hero-logo-wrap {{ width: 96px; height: 96px; border-radius: 22px; background: var(--white);
+    .hero-logo-wrap {{ width: 163px; height: 163px; border-radius: 36px; background: var(--white);
                        border: 1px solid var(--border); box-shadow: 0 6px 24px rgba(0,0,0,.10);
                        display: flex; align-items: center; justify-content: center;
                        margin: 0 auto 20px; overflow: hidden; }}
-    .hero-logo-img {{ width: 72px; height: 72px; object-fit: contain; }}
-    .hero-logo-ini {{ font-size: 32px; font-weight: 800; width: 100%; height: 100%;
+    .hero-logo-img {{ width: 122px; height: 122px; object-fit: contain; }}
+    .hero-logo-ini {{ font-size: 52px; font-weight: 800; width: 100%; height: 100%;
                       display: flex; align-items: center; justify-content: center; }}
     .hero-name {{ font-size: 22px; font-weight: 700; margin-bottom: 4px; }}
     .hero-tagline {{ font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 520px;

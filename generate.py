@@ -89,6 +89,17 @@ def fetch_companies(profile: dict, limit: int = 10) -> list:
         })
         results = r.json().get("data", [])
 
+    # Tier-2 fallback: small countries (e.g. Denmark only) may still yield nothing.
+    # Drop geo entirely so we at least return thesis-matched companies.
+    if loc_ids and len(results) < limit:
+        parts_no_geo = [p for p in parts if not p.startswith("location")]
+        r = client.get("/entities", params={
+            "filter": f"and({','.join(parts_no_geo)})" if len(parts_no_geo) > 1 else parts_no_geo[0],
+            "sort":   sort_field,
+            "limit":  limit + len(portfolio) + 40,
+        })
+        results = r.json().get("data", [])
+
     # Rule 3: investor not US-based → skip heavily-funded US companies (>$100M)
     investor_in_us = "United States" in focus_countries[:2]
 
@@ -292,12 +303,12 @@ def build_page(profile: dict, companies: list, out_path: str, meeting_url: str =
     .hero {{ background: var(--white); border: 1px solid var(--border); border-radius: 16px;
              padding: 36px 32px 28px; text-align: center; margin-bottom: 20px;
              box-shadow: 0 1px 6px rgba(0,0,0,.05); }}
-    .hero-logo-wrap {{ width: 125px; height: 125px; border-radius: 28px; background: var(--white);
+    .hero-logo-wrap {{ width: 163px; height: 163px; border-radius: 36px; background: var(--white);
                        border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,.08);
                        display: flex; align-items: center; justify-content: center;
-                       margin: 0 auto 18px; overflow: hidden; }}
-    .hero-logo-img {{ width: 94px; height: 94px; object-fit: contain; }}
-    .hero-logo-ini {{ font-size: 40px; font-weight: 800; width: 100%; height: 100%;
+                       margin: 0 auto 20px; overflow: hidden; }}
+    .hero-logo-img {{ width: 122px; height: 122px; object-fit: contain; }}
+    .hero-logo-ini {{ font-size: 52px; font-weight: 800; width: 100%; height: 100%;
                       display: flex; align-items: center; justify-content: center; }}
     .hero-name {{ font-size: 20px; font-weight: 700; margin-bottom: 3px; }}
     .hero-stage {{ font-size: 12px; color: var(--muted); margin-bottom: 8px; }}
